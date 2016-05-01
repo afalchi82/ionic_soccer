@@ -1,10 +1,12 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['firebase'])
 
-.factory('Players', function() {
+.factory('Players', function($firebaseArray) {
   // Might use a resource here that returns a JSON array
+  var itemsRef = new Firebase("https://afalch.firebaseio.com/calcetto");
+  var players = $firebaseArray(itemsRef);
 
   // Some fake testing data
-  var players = [{
+  var playersOld = [{
     id: 0,
     name: 'Ben Sparrow',
     lastText: 'You on your way?',
