@@ -41,6 +41,10 @@ angular.module('starter.controllers', [])
     $scope.players.splice(toIndex, 0, item);
   };
   
+  $scope.log = function (item) {
+    console.log(item);
+  };
+  
   
 })
 

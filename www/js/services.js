@@ -66,19 +66,36 @@ angular.module('starter.services', [])
   // Some fake testing data
   var games = [
     {
-      id: 0
+      id: 0,
+      date: '07/05/2016',
+      location: 'Athletic Club',
+      time: '7PM'
     },
     {
-      id: 1
+      id: 1,
+      date: '07/05/2016',
+      location: 'Athletic Club',
+      time: '7PM'
     },
     {
-      id: 2
+      id: 2,
+      date: '07/05/2016',
+      location: 'Athletic Club',
+      time: '7PM'
     }
   ];
 
   return {
     all: function() {
       return games;
+    },
+    get: function(gameId) {
+      for (var i = 0; i < games.length; i++) {
+        if (games[i].id === parseInt(gameId)) {
+          return games[i];
+        }
+      }
+      return null;
     }
   };
 })
