@@ -1,8 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('GridCtrl', function($scope) {  
-  $scope.franco = 'Ciccio';  
-})
+
 
 .controller('ListCtrl', function($scope){
   
@@ -10,31 +8,17 @@ angular.module('starter.controllers', [])
   $scope.shouldShowReorder = false;
   $scope.listCanSwipe = true;
   
-  $scope.players = [
-    {
-      img: 'http://lorempixel.com/400/200/sports',
-      title: 'title1',
-      description: 'description1'
-    },
-    {
-      img: 'http://lorempixel.com/400/200/city',
-      title: 'title 2',
-      description: 'description 2'
-    },
-    {
-      img: 'http://lorempixel.com/400/200/cats',
-      title: 'title1',
-      description: 'description1'
-    },
-    {
-      img: 'http://lorempixel.com/400/200/fashion',
-      title: 'title 2',
-      description: 'description 2'
-    },
-  ];
+  
 })
 
 .controller('DashCtrl', function($scope) {})
+
+.controller('GamesCtrl', function($scope, Games) {
+  $scope.games = Games.all();
+})
+.controller('GameDetailCtrl', function($scope, $stateParams, Games) {
+  $scope.game = Games.get($stateParams.gameId);
+})
 
 .controller('PlayersCtrl', function($scope, Players) {
   // With the new view caching in Ionic, Controllers are only called
@@ -50,12 +34,18 @@ angular.module('starter.controllers', [])
     Players.remove(player);
   };
   
+  // Reorder items
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    //Move the item in the array
+    $scope.players.splice(fromIndex, 1);
+    $scope.players.splice(toIndex, 0, item);
+  };
+  
   
 })
 
 .controller('PlayerDetailCtrl', function($scope, $stateParams, Players) {
-  console.log(Players.length);
-  $scope.players = Players.get($stateParams.playerId);
+  $scope.player = Players.get($stateParams.playerId);
 })
 
 .controller('AccountCtrl', function($scope) {
