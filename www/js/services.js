@@ -62,8 +62,10 @@ angular.module('starter.services', ['firebase'])
   };
 })
 
-.factory('Games', function() {
-  // Might use a resource here that returns a JSON array
+.factory('Games', function($firebaseArray) {
+  
+  var FB_matches = new Firebase('https://m1sc.firebaseio.com/ionic_soccer/matches'),
+      FB_matches_arr = $firebaseArray(FB_matches);
 
   // Some fake testing data
   var games = [
@@ -89,8 +91,16 @@ angular.module('starter.services', ['firebase'])
 
   return {
     all: function() {
-      return games;
+      return FB_matches_arr;
     },
+    saveNewMatch: function (obj) {
+      console.log(obj);
+      FB_matches_arr.$add(obj);
+    },
+    removeMatch: function (obj) {
+      FB_matches_arr.$remove(obj);
+    },
+    fb_array: $firebaseArray(FB_matches),
     get: function(gameId) {
       for (var i = 0; i < games.length; i++) {
         if (games[i].id === parseInt(gameId)) {
@@ -101,5 +111,13 @@ angular.module('starter.services', ['firebase'])
     }
   };
 })
+
+.factory('firebaseMatchesArr', function($firebaseArray) {
+  var itemsRef = new Firebase("https://m1sc.firebaseio.com/ionic_soccer/matches");
+  return $firebaseArray(itemsRef);
+})
+
+
+
 
 ;

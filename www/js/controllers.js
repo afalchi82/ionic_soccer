@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['firebase'])
 
 
 
@@ -15,6 +15,17 @@ angular.module('starter.controllers', [])
 
 .controller('GamesCtrl', function($scope, Games) {
   $scope.games = Games.all();
+  
+  $scope.match = {};
+  
+  $scope.saveNewMatch = function(){
+    Games.saveNewMatch($scope.match);
+  };
+  
+  $scope.remove = function(obj){
+    Games.removeMatch(obj);
+  };
+  
 })
 .controller('GameDetailCtrl', function($scope, $stateParams, Games) {
   $scope.game = Games.get($stateParams.gameId);
