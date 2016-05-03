@@ -21,3 +21,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:400,300,700);
+
+body {font-family: 'Work Sans', sans-serif;}
+

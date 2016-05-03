@@ -4,18 +4,18 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{game.id}}">
+<ion-view view-title="{{game.$id}}">
   <ion-content class="padding">
+    
+    <h1>{{game.when | date}}</h1>
+    
+    <h2>{{game.where | date}}</h2>
 
     <p>
-      {{game.id}} - {{game.date}} - {{game.location}} - {{game.time}} 
+      {{game.when | date}} - {{game.location}} - {{game.time | date}} 
     </p>
 
-    <ion-list>
-      <ion-item ng-repeat="item in player.stats">
-        {{item.name}}: {{item.value}} 
-      </ion-item>
-    </ion-list>
+    
 
   </ion-content>
 </ion-view>

@@ -6,12 +6,20 @@ angular.module('starter.controllers', ['firebase'])
   
   $scope.shouldShowDelete = false;
   $scope.shouldShowReorder = false;
-  $scope.listCanSwipe = true;
-  
+  $scope.listCanSwipe = true;  
   
 })
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($rootScope, $scope, Users) {
+  $rootScope.user = {
+    username: ''
+  };
+  
+  $scope.createUser = function() {
+    Users.createUser($rootScope.user);
+  };
+  
+})
 
 .controller('GamesCtrl', function($scope, Games) {
   $scope.games = Games.all();

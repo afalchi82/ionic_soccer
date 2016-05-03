@@ -1,5 +1,7 @@
 angular.module('starter.services', ['firebase'])
 
+.constant('FB_URL', '')
+
 .factory('Players', function($firebaseArray) {
   // Might use a resource here that returns a JSON array
   var itemsRef = new Firebase("https://afalch.firebaseio.com/calcetto");
@@ -67,28 +69,7 @@ angular.module('starter.services', ['firebase'])
   var FB_matches = new Firebase('https://m1sc.firebaseio.com/ionic_soccer/matches'),
       FB_matches_arr = $firebaseArray(FB_matches);
 
-  // Some fake testing data
-  var games = [
-    {
-      id: 0,
-      date: '07/05/2016',
-      location: 'Athletic Club',
-      time: '7PM'
-    },
-    {
-      id: 1,
-      date: '07/05/2016',
-      location: 'Athletic Club',
-      time: '7PM'
-    },
-    {
-      id: 2,
-      date: '07/05/2016',
-      location: 'Athletic Club',
-      time: '7PM'
-    }
-  ];
-
+  
   return {
     all: function() {
       return FB_matches_arr;
@@ -102,10 +83,18 @@ angular.module('starter.services', ['firebase'])
     },
     fb_array: $firebaseArray(FB_matches),
     get: function(gameId) {
-      for (var i = 0; i < games.length; i++) {
+      
+      for (var i = 0; i < FB_matches_arr.length; i++) {
+        console.log(FB_matches_arr[i].$id);
+        if (FB_matches_arr[i].$id === gameId) {
+          return FB_matches_arr[i];
+        }
+        
+        /*
         if (games[i].id === parseInt(gameId)) {
           return games[i];
         }
+        */
       }
       return null;
     }
@@ -115,6 +104,19 @@ angular.module('starter.services', ['firebase'])
 .factory('firebaseMatchesArr', function($firebaseArray) {
   var itemsRef = new Firebase("https://m1sc.firebaseio.com/ionic_soccer/matches");
   return $firebaseArray(itemsRef);
+})
+
+
+.factory('Users', function($firebaseArray){
+  var itemsRef = new Firebase("https://m1sc.firebaseio.com/ionic_soccer/users");
+  var fb_array = $firebaseArray(itemsRef); 
+  
+  return {
+    createUser: function(userObj) {
+      fb_array.$add(userObj);
+    }
+  };
+  
 })
 
 
