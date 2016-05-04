@@ -39,7 +39,7 @@ angular.module('starter.controllers', ['firebase'])
   $scope.game = Games.get($stateParams.gameId);
 })
 
-.controller('PlayersCtrl', function($scope, Players) {
+.controller('PlayersCtrl', function($scope, Users) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -48,7 +48,7 @@ angular.module('starter.controllers', ['firebase'])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.players = Players.all();
+  $scope.players = Users.all();
   $scope.remove = function(player) {
     Players.remove(player);
   };
@@ -67,8 +67,8 @@ angular.module('starter.controllers', ['firebase'])
   
 })
 
-.controller('PlayerDetailCtrl', function($scope, $stateParams, Players) {
-  $scope.player = Players.get($stateParams.playerId);
+.controller('PlayerDetailCtrl', function($scope, $stateParams, Users) {
+  $scope.player = Users.get($stateParams.playerId);
 })
 
 .controller('AccountCtrl', function($scope) {

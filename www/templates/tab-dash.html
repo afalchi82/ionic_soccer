@@ -7,12 +7,38 @@
 
     <!-- Login -->
     <div class="list">
-      <label class="item item-input">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Username</span>
         <input type="text" placeholder="Username" ng-model="user.username">
-      </label>      
+      </label>  
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Name</span>
+        <input type="text" placeholder="Name" ng-model="user.name">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Surname</span>
+        <input type="text" placeholder="Surname" ng-model="user.surname">
+      </label>   
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Picture URL</span>
+        <input type="text" placeholder="Picture URL" ng-model="user.picture">
+      </label>   
+      <label class="item item-input item-stacked-label item-select">
+        <span class="input-label">Role</span>
+        <select ng-model="user.role">
+          <option selected>Goalkeeper</option>
+          <option>Defender</option>
+          <option>Midfielder</option>
+          <option>Forward</option>
+        </select>
+      </label> 
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Bio</span>
+        <textarea placeholder="Bio" ng-model="user.bio"></textarea>
+      </label>
     </div>
     <div class="">
-        <button class="button button-block button-positive" ng-click="createUser()">Login</button>
+        <button class="button button-block button-positive" ng-click="createUser()">Register</button>
       </div>
     <!-- /Login -->
     
